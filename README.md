@@ -8,8 +8,8 @@ Will be completed later...
 
 # Todo
 **Authentication**
-- [ ] Google Auth
-- [ ] Logout
+- [x] Google Auth
+- [x] Logout
 
 **User Operations**
 - [ ] Add new friend
