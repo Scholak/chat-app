@@ -12,7 +12,7 @@ import { useMutation } from 'react-query'
 const AddFriendForm = () => {
 	const { mutateAsync } = useMutation(addFriendrequest)
 
-  const { register, handleSubmit, formState: { errors } } = useForm<AddFriendSchema>({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<AddFriendSchema>({
     resolver: zodResolver(addFriendSchema)
   })
 
@@ -20,6 +20,7 @@ const AddFriendForm = () => {
       await mutateAsync(data, {
 				onSuccess: (data, variables, context) => {
 					toast.success(data.message)
+					reset()
 				},
 				onError: (error: any, variables, context) => {
 					toast.error(error.response?.data.message)
@@ -28,23 +29,26 @@ const AddFriendForm = () => {
   }
 
   return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className='flex items-stretch'>
-				<input
-					type='email'
-					{...register('email')}
-					placeholder='type email...'
-					className='px-2 rounded-s border border-slate-700 outline-none'
-				/>
-				<button
-					type='submit'
-					className='py-2 px-4 bg-green-600 text-white rounded-e'
-				>
-					add
-				</button>
-			</div>
-			{errors.email && <p className='text-red-500'>{errors.email.message}</p>}
-		</form>
+		<div className='mx-3 p-3 bg-white rounded-md shadow'>
+			<h3 className='mb-2 text-xl font-bold'>Add New Friend</h3>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<div className='flex items-stretch'>
+					<input
+						type='email'
+						{...register('email')}
+						placeholder='type email...'
+						className='px-1 border border-green-600 rounded-s outline-none'
+					/>
+					<button
+						type='submit'
+						className='w-full py-1 text-center bg-green-600 text-white rounded-e'
+					>
+						add
+					</button>
+				</div>
+				{errors.email && <p className='mt-1 text-red-500'>{errors.email.message}</p>}
+			</form>
+		</div>
 	)
 }
 

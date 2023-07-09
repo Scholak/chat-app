@@ -2,13 +2,16 @@
 
 import { getFriends } from '@/services/friendService'
 import { changeChat } from '@/store/slices/chatSlice'
+import { RootState } from '@/store/store'
 import { useSession } from 'next-auth/react'
 import React from 'react'
 import { useQuery } from 'react-query'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const FriendList = () => {
   const { data: session } = useSession()
+
+	const id = useSelector((state: RootState) => state.chat.id)
 
   const dispatch = useDispatch()
 
@@ -26,8 +29,8 @@ const FriendList = () => {
   }
 
   return (
-		<div>
-			<h3 className='mt-4 mb-2 text-3xl font-semibold'>Friends</h3>
+		<div className='mx-3'>
+			<h3 className='mt-4 mb-2 text-xl font-bold'>Friends</h3>
 			<div>
 				{isLoading ? (
 					<div className='text-blue-500'>loading...</div>
@@ -35,10 +38,16 @@ const FriendList = () => {
 					friends?.map((friend: any) => (
 						<div
 							key={friend.id}
-							className='pb-1 border-b border-slate-700'
+							className={`flex items-center gap-3 mb-3 p-3 bg-white rounded-md cursor-pointer ${id === friend.id ? 'shadow-lg' : ''}`}
 							onClick={() => handleChangeChat(friend.id)}
 						>
-							{friend.email}
+							<img
+								src={friend.picture}
+								className='w-10 h-10 rounded-full overflow-hidden'
+							/>
+							<span className={id === friend.id ? 'font-bold' : ''}>
+								{friend.email}
+							</span>
 						</div>
 					))
 				)}

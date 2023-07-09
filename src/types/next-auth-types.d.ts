@@ -4,13 +4,13 @@ declare module 'next-auth' {
 	interface Profile {
 		id: number
 		email: string,
-    picture: string
+    image: string
 	}
 	interface Session {
 		user: {
 			id: number
 			email: string
-			picture: string
+			image: string
 		}
 	}
 }

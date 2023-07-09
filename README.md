@@ -24,9 +24,9 @@ Will be completed later...
 - [ ] Delete group if role is admin
 
 **UI Improvements**
-- [ ] Add friend ui improvements
-- [ ] Friend list ui improvements
-- [ ] Friend requests ui improvements
+- [x] Add friend ui improvements
+- [x] Friend list ui improvements
+- [x] Friend requests ui improvements
 - [ ] Message screen ui improvements
 - [ ] Message send form ui improvements
 
@@ -35,3 +35,4 @@ Will be completed later...
 - [ ] Multiple render when friend request and friend request accept (it renders 7 times)
 
 # Dev Todo
+decline friend request feature
