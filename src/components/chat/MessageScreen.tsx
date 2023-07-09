@@ -1,11 +1,11 @@
 'use client'
 
+import { pusherClient } from '@/libs/pusher'
 import { queryClient } from '@/libs/queryClient'
 import { getMessages } from '@/services/messageService'
 import { RootState } from '@/store/store'
 import { Message } from '@/types/message-types'
 import { useSession } from 'next-auth/react'
-import Pusher from 'pusher-js'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
@@ -19,11 +19,7 @@ const MessageScreen = () => {
     <div>Loading...</div>
   }
 
-  const pusher = new Pusher('75391d22d9bc1e7960ce', {
-		cluster: 'eu',
-	})
-
-	const channel = pusher.subscribe('chat')
+	const channel = pusherClient.subscribe('chat')
 
   let room: string
 

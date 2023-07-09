@@ -1,5 +1,5 @@
 import db from "@/libs/db"
-import { pusher } from "@/libs/pusher"
+import { pusherServer } from "@/libs/pusher"
 import { getServerSession } from "next-auth"
 import { getToken } from "next-auth/jwt"
 import { NextRequest } from "next/server"
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
 			)
 		}
 
-		await pusher.trigger('user', email, {
+		await pusherServer.trigger('user', email, {
 			message: 'new friend request',
 			sendRequest,
 		})

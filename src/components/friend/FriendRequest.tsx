@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { useSession } from 'next-auth/react'
-import Pusher from 'pusher-js'
 import { acceptFriendrequest, getFriendrequests } from '@/services/friendService'
 import { toast } from 'react-toastify'
 import { useMutation, useQuery } from 'react-query'
 import { queryClient } from '@/libs/queryClient'
+import { pusherClient } from '@/libs/pusher'
 
 interface FriendRequest {
 	id: number
@@ -37,11 +37,7 @@ const FriendRequest = () => {
 	})
 
 	if (session?.user) {
-		const pusher = new Pusher('75391d22d9bc1e7960ce', {
-			cluster: 'eu',
-		})
-
-		const channel = pusher.subscribe('user')
+		const channel = pusherClient.subscribe('user')
 		channel.bind(session.user.email as string, function (data: any) {
 			queryClient.invalidateQueries(['friends', session?.user?.email])
 		})

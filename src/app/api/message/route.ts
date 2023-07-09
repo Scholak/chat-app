@@ -1,6 +1,5 @@
 import db from "@/libs/db";
-import { pusher } from "@/libs/pusher";
-import { getServerSession } from "next-auth";
+import { pusherServer } from "@/libs/pusher";
 import { getToken } from "next-auth/jwt";
 import { NextRequest } from "next/server";
 
@@ -52,7 +51,7 @@ export async function POST(req: NextRequest) {
       room = `${body.to}_${authId}`
     }
 
-    await pusher.trigger('chat', room, {
+    await pusherServer.trigger('chat', room, {
 			message,
 		})
 
