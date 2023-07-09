@@ -15,11 +15,6 @@ enum Type {
   FILE
 }
 
-enum ToType {
-  USER
-  GROUP
-}
-
 model User {
   id      Int    @id @default(autoincrement())
   email   String @unique
