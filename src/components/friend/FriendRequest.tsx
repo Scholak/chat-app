@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useSession } from 'next-auth/react'
-import { acceptFriendrequest, getFriendrequests } from '@/services/friendService'
+import { acceptFriendrequest, declineFriendrequest, getFriendrequests } from '@/services/friendService'
 import { toast } from 'react-toastify'
 import { useMutation, useQuery } from 'react-query'
 import { queryClient } from '@/libs/queryClient'
@@ -26,7 +26,17 @@ const FriendRequest = () => {
 		queryFn: getFriendrequests,
 	})
 
-	const { mutateAsync } = useMutation(acceptFriendrequest, {
+	const { mutateAsync: acceptMutateAsync } = useMutation(acceptFriendrequest, {
+		onSuccess: (data, variables, context) => {
+			queryClient.invalidateQueries(['requests', session?.user?.email])
+			queryClient.invalidateQueries(['friends', session?.user?.email])
+		},
+		onError: (error: any, variables, context) => {
+			toast.error(error.response?.data.message)
+		},
+	})
+
+	const { mutateAsync: declineMutateAsync } = useMutation(declineFriendrequest, {
 		onSuccess: (data, variables, context) => {
 			queryClient.invalidateQueries(['requests', session?.user?.email])
 			queryClient.invalidateQueries(['friends', session?.user?.email])
@@ -44,8 +54,12 @@ const FriendRequest = () => {
 	}
 
   const handleAccept = async (email: string) => {
-    await mutateAsync(email)
+    await acceptMutateAsync(email)
   }
+
+	const handleDecline = async (email: string) => {
+		await declineMutateAsync(email)
+	}
 
   return (
 		<div className='mt-4 mx-3 p-3 rounded-md bg-white shadow'>
@@ -67,7 +81,7 @@ const FriendRequest = () => {
 								</button>
 								<button
 									className='ml-3 py-1 px-2 rounded cursor-pointer bg-red-500 text-white'
-									onClick={() => handleAccept(request.sender)}
+									onClick={() => handleDecline(request.sender)}
 								>
 									decline
 								</button>

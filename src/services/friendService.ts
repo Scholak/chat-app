@@ -20,3 +20,8 @@ export const acceptFriendrequest = async (senderEmail: string) => {
 	const res = await axios.post('http://localhost:3000/api/friends/accept', {senderEmail})
 	return res.data
 }
+
+export const declineFriendrequest = async (senderEmail: string) => {
+	const res = await axios.post('http://localhost:3000/api/friends/decline', {senderEmail})
+	return res.data
+}

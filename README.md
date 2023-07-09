@@ -13,6 +13,7 @@ Will be completed later...
 
 **User Operations**
 - [x] Add new friend
+- [x] Decline friend request
 
 **Message Operations**
 - [x] Send message to existing friend
@@ -35,4 +36,3 @@ Will be completed later...
 - [ ] Multiple render when friend request and friend request accept (it renders 7 times)
 
 # Dev Todo
-decline friend request feature
