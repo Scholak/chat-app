@@ -13,14 +13,14 @@ import { useSelector } from 'react-redux'
 
 const SendMessageForm = () => {
 	const { mutateAsync } = useMutation(sendMessage)
-	const email = useSelector((state: RootState) => state.chat.email)
+	const id = useSelector((state: RootState) => state.chat.id)
 
 	const { register, handleSubmit } = useForm<SendMessageSchema>({
 		resolver: zodResolver(sendMessageSchema)
 	})
 
 	const onSubmit = async (data: SendMessageSchema) => {
-		await mutateAsync({ content: data.content, to: email, type: 'TEXT' } as SendMessageRequest, {
+		await mutateAsync({ content: data.content, to: id, type: 'TEXT' } as SendMessageRequest, {
 			onSuccess: (data, variables, context) => {
 				queryClient.invalidateQueries(['messages'])
 			},

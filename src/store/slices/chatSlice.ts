@@ -2,23 +2,23 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface ChatState {
-	email: string
+	id: number
 }
 
 const initialState: ChatState = {
-	email: '',
+	id: 0,
 }
 
 export const chatSlice = createSlice({
 	name: 'chat',
 	initialState,
 	reducers: {
-		changeEmail: (state, action: PayloadAction<string>) => {
-			state.email = action.payload
+		changeChat: (state, action: PayloadAction<number>) => {
+			state.id = action.payload
 		},
 	},
 })
 
-export const { changeEmail } = chatSlice.actions
+export const { changeChat } = chatSlice.actions
 
 export default chatSlice.reducer

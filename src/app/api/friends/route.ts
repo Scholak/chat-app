@@ -1,84 +1,38 @@
 import db from "@/libs/db";
-import { getServerSession } from "next-auth";
+import { getToken } from "next-auth/jwt";
+import { NextRequest } from "next/server";
 
-export async function GET(req: Request) {
-  const session = await getServerSession()
+export async function GET(req: NextRequest) {
+  const session = await getToken({req, secret: process.env.NEXTAUTH_SECRET})
 
-  if(!session?.user) {
+  if(!session) {
     return new Response(JSON.stringify({ message: 'user not authenticated' }), { status: 401 })
   }
 
-  const friends = await db.friend.findMany({
+  const friendIds = await db.friend.findMany({
     where: {
-      userOne: session.user.email as string
+      OR: [
+				{userOne: session.id as number},
+				{userTwo: session.id as number},
+			]
+    }
+  })
+
+  const ids = friendIds.map(friend => {
+    if(friend.userOne === session.id) {
+      return friend.userTwo
+    } else {
+      return friend.userOne
+    }
+  })
+
+  const friends = await db.user.findMany({
+    where: {
+      id: {
+        in: ids
+      }
     }
   })
 
   return new Response(JSON.stringify(friends), { status: 200 })
-}
-
-export async function POST(req: Request) {
-	const session = await getServerSession()
-
-  if(!session?.user) {
-    return new Response(JSON.stringify({ message: 'user not authenticated' }), { status: 401 })
-  }
-
-  try {
-    const body = await req.json()
-    const email: string = body.email
-
-    if(email === session.user.email) {
-      return new Response(JSON.stringify({ message: 'you cannot add yourself as a friend' }), { status: 400 })
-    }
-
-    const authEmail: string = session.user.email as string
-
-    const isAleradyFriend = await db.friend.findFirst({
-			where: {
-				OR: [
-					{
-						userOne: email,
-						userTwo: authEmail,
-					},
-					{
-						userOne: authEmail,
-						userTwo: email,
-					},
-				],
-			},
-		})
-
-    if (isAleradyFriend) {
-			return new Response(
-				JSON.stringify({ message: `${email} is already your friend` }),
-				{ status: 400 }
-			)
-		}
-
-    const addFriend = await db.friend.create({
-			data: {
-				userOne: authEmail,
-				userTwo: email,
-			},
-		})
-
-    const addFriendReverse = await db.friend.create({
-			data: {
-				userTwo: authEmail,
-				userOne: email,
-			},
-		})
-
-    if (!addFriend || !addFriendReverse) {
-			return new Response(
-				JSON.stringify({ message: 'friend could not added' }),
-				{ status: 422 }
-			)
-		}
-
-    return new Response(JSON.stringify({ message: 'friend added successfully' }), { status: 201 })
-  } catch (error: any) {
-    return new Response(JSON.stringify({ message: 'internal server error', error }), { status: 500 })
-  }
 }

@@ -1,6 +1,8 @@
 import db from "@/libs/db"
 import { pusher } from "@/libs/pusher"
 import { getServerSession } from "next-auth"
+import { getToken } from "next-auth/jwt"
+import { NextRequest } from "next/server"
 
 export async function GET(req: Request) {
 	const session = await getServerSession()
@@ -20,10 +22,10 @@ export async function GET(req: Request) {
 	return new Response(JSON.stringify(requests))
 }
 
-export async function POST(req: Request) {
-	const session = await getServerSession()
+export async function POST(req: NextRequest) {
+	const session = await getToken({req, secret: process.env.NEXTAUTH_SECRET})
 
-	if (!session?.user) {
+	if (!session?.id) {
 		return new Response(JSON.stringify({ message: 'user not authenticated' }), {
 			status: 401,
 		})
@@ -33,19 +35,33 @@ export async function POST(req: Request) {
 		const body = await req.json()
 		const email: string = body.email
 
-		if (email === session.user.email) {
+		if (email === session.email) {
 			return new Response(
 				JSON.stringify({ message: 'you cannot add yourself as a friend' }),
 				{ status: 400 }
 			)
 		}
 
-		const authEmail: string = session.user.email as string
+		const authEmail: string = session.email as string
+
+
+		const isExistingUser = await db.user.findFirst({
+			where: {
+				email
+			}
+		})
+
+		if (!isExistingUser) {
+			return new Response(
+				JSON.stringify({ message: 'user don\'t exist' }),
+				{ status: 404 }
+			)
+		}
 
 		const isAleradySent = await db.friendRequest.findFirst({
 			where: {
 				sender: authEmail,
-        reciever: email
+				reciever: isExistingUser.email,
 			},
 		})
 
@@ -59,7 +75,7 @@ export async function POST(req: Request) {
 		const sendRequest = await db.friendRequest.create({
 			data: {
 				sender: authEmail,
-				reciever: email,
+				reciever: isExistingUser.email,
 			},
 		})
 
@@ -81,7 +97,7 @@ export async function POST(req: Request) {
 		)
 	} catch (error: any) {
 		return new Response(
-			JSON.stringify({ message: 'internal server error', error }),
+			JSON.stringify({ message: 'internal server error', error: error.message }),
 			{ status: 500 }
 		)
 	}

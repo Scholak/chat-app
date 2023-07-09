@@ -3,8 +3,8 @@ export interface Message {
 	type: 'TEXT' | 'FILE'
 	content: string
 	date: Date
-	from: string
-	to: string
+	from: number
+	to: number
 }
 
 export interface SendMessageSchema {
@@ -14,5 +14,5 @@ export interface SendMessageSchema {
 export interface SendMessageRequest {
 	type: 'TEXT' | 'FILE'
 	content: string
-	to: string
+	to: number
 }

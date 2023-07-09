@@ -23,16 +23,19 @@ export const authOptions: NextAuthOptions = {
 							picture: profile.picture,
 						},
 					})
-					token = createdUser
+					token.id = createdUser.id
 				} else {
-					token = existingUser
+					token.id = existingUser.id
 				}
 			}
 
 			return token
 		},
+		async session({session, token}) {
+			session.user.id = token.id as number
+			return session
+		},
 		async signIn({ account }) {
-			console.log(account)
 			return true
 		}
 	},

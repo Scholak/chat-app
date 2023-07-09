@@ -35,6 +35,3 @@ Will be completed later...
 - [ ] Multiple render when friend request and friend request accept (it renders 7 times)
 
 # Dev Todo
-- Use id instead of email
-- Fix message and friend confusion
-- Fix non-unique message channels
