@@ -27,6 +27,8 @@ Will be completed later...
 - [ ] Add friend ui improvements
 - [ ] Friend list ui improvements
 - [ ] Friend requests ui improvements
+- [ ] Message screen ui improvements
+- [ ] Message send form ui improvements
 
 # Bug Fix
 - [ ] Sign in page display issue because of grid layout
