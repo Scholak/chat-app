@@ -1,6 +1,6 @@
-import AddFriendForm from '@/components/AddFriendForm'
-import FriendList from '@/components/FriendList'
-import FriendRequest from '@/components/FriendRequest'
+import AddFriendForm from '@/components/friend/AddFriendForm'
+import FriendList from '@/components/friend/FriendList'
+import FriendRequest from '@/components/friend/FriendRequest'
 import React from 'react'
 
 const Friends = () => {

@@ -10,6 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Type {
+  TEXT
+  FILE
+}
+
+enum ToType {
+  USER
+  GROUP
+}
+
 model User {
   id      Int    @id @default(autoincrement())
   email   String @unique
@@ -26,4 +36,13 @@ model FriendRequest {
   id       Int    @id @default(autoincrement())
   sender   String
   reciever String
+}
+
+model Message {
+  id      Int      @id @default(autoincrement())
+  type    Type
+  content String
+  date    DateTime @default(now())
+  from    String
+  to      String
 }

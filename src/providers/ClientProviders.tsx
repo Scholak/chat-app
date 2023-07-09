@@ -6,6 +6,8 @@ import { ToastContainer } from 'react-toastify'
 import { QueryClientProvider } from 'react-query'
 import 'react-toastify/dist/ReactToastify.css'
 import { queryClient } from '@/libs/queryClient'
+import { Provider } from 'react-redux'
+import { store } from '@/store/store'
 
 interface Props {
   children: React.ReactNode
@@ -14,10 +16,12 @@ interface Props {
 const ClientProviders = ({children}: Props) => {
   return (
 		<SessionProvider>
-			<QueryClientProvider client={queryClient}>
-				<ToastContainer />
-				{children}
-			</QueryClientProvider>
+			<Provider store={store}>
+				<QueryClientProvider client={queryClient}>
+					<ToastContainer />
+					{children}
+				</QueryClientProvider>
+			</Provider>
 		</SessionProvider>
 	)
 }

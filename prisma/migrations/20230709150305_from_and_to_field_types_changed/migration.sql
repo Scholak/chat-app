@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `Message` MODIFY `to` VARCHAR(191) NOT NULL,
+    MODIFY `from` VARCHAR(191) NOT NULL;

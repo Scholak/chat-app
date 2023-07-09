@@ -15,7 +15,7 @@ Will be completed later...
 - [x] Add new friend
 
 **Message Operations**
-- [ ] Send message to existing friend
+- [x] Send message to existing friend
 - [ ] Send file to existing friend
 
 **Group Operations**
@@ -31,3 +31,8 @@ Will be completed later...
 # Bug Fix
 - [ ] Sign in page display issue because of grid layout
 - [ ] Multiple render when friend request and friend request accept (it renders 7 times)
+
+# Dev Todo
+- Use id instead of email
+- Fix message and friend confusion
+- Fix non-unique message channels
