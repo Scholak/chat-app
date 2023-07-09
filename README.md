@@ -12,8 +12,7 @@ Will be completed later...
 - [x] Logout
 
 **User Operations**
-- [ ] Add new friend
-- [ ] Remove existing friend
+- [x] Add new friend
 
 **Message Operations**
 - [ ] Send message to existing friend
@@ -23,3 +22,12 @@ Will be completed later...
 - [ ] Create new group
 - [ ] Leave from joined group
 - [ ] Delete group if role is admin
+
+**UI Improvements**
+- [ ] Add friend ui improvements
+- [ ] Friend list ui improvements
+- [ ] Friend requests ui improvements
+
+# Bug Fix
+- [ ] Sign in page display issue because of grid layout
+- [ ] Multiple render when friend request and friend request accept (it renders 7 times)

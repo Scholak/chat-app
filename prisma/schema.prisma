@@ -15,3 +15,15 @@ model User {
   email   String @unique
   picture String
 }
+
+model Friend {
+  id      Int    @id @default(autoincrement())
+  userOne String
+  userTwo String
+}
+
+model FriendRequest {
+  id       Int    @id @default(autoincrement())
+  sender   String
+  reciever String
+}
