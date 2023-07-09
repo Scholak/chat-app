@@ -17,12 +17,15 @@ export const authOptions: NextAuthOptions = {
 				})
 
 				if (!existingUser) {
-					await db.user.create({
+					const createdUser = await db.user.create({
 						data: {
 							email: profile.email,
 							picture: profile.picture,
 						},
 					})
+					token = createdUser
+				} else {
+					token = existingUser
 				}
 			}
 
