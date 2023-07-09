@@ -1,6 +1,6 @@
 'use client'
 
-import { pusherClient } from '@/libs/pusher'
+import { pusherClient } from '@/libs/pusherClient'
 import { queryClient } from '@/libs/queryClient'
 import { getMessages } from '@/services/messageService'
 import { RootState } from '@/store/store'

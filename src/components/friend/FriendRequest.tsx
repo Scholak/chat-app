@@ -6,7 +6,7 @@ import { acceptFriendrequest, getFriendrequests } from '@/services/friendService
 import { toast } from 'react-toastify'
 import { useMutation, useQuery } from 'react-query'
 import { queryClient } from '@/libs/queryClient'
-import { pusherClient } from '@/libs/pusher'
+import { pusherClient } from '@/libs/pusherClient'
 
 interface FriendRequest {
 	id: number
