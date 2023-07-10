@@ -23,7 +23,6 @@ const ChatPage = () => {
 			<div
 				className='absolute min-h-screen border-r border-gray-300 bg-slate-800 -translate-x-full transition duration-300 z-10 xl:static xl:translate-x-0'
 				ref={divEl}
-				onClick={handleToggle}
 			>
 				<Profile />
 				<AddFriendForm />
