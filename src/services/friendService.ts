@@ -1,4 +1,4 @@
-import { AddFriendSchema } from '@/types/friend-types'
+import { IAddFriendSchema } from '@/types/friend-types'
 import axios from 'axios'
 
 export const getFriends = async () => {
@@ -16,7 +16,7 @@ export const getFriendrequests = async () => {
 	return res.data
 }
 
-export const addFriendrequest = async (data: AddFriendSchema) => {
+export const addFriendrequest = async (data: IAddFriendSchema) => {
   const res = await axios.post('http://localhost:3000/api/friends/request', data)
   return res.data
 }

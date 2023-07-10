@@ -3,7 +3,7 @@
 import { queryClient } from '@/libs/queryClient'
 import { sendMessage } from '@/services/messageService'
 import { RootState } from '@/store/store'
-import { SendMessageRequest, SendMessageSchema } from '@/types/message-types'
+import { ISendMessageRequest, ISendMessageSchema } from '@/types/message-types'
 import { sendMessageSchema } from '@/validations/sendMessageSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
@@ -16,12 +16,12 @@ const SendMessageForm = () => {
 	const { mutateAsync } = useMutation(sendMessage)
 	const id = useSelector((state: RootState) => state.chat.id)
 
-	const { register, handleSubmit, reset } = useForm<SendMessageSchema>({
-		resolver: zodResolver(sendMessageSchema)
+	const { register, handleSubmit, reset } = useForm<ISendMessageSchema>({
+		resolver: zodResolver(sendMessageSchema),
 	})
 
-	const onSubmit = async (data: SendMessageSchema) => {
-		await mutateAsync({ content: data.content, to: id, type: 'TEXT' } as SendMessageRequest, {
+	const onSubmit = async (data: ISendMessageSchema) => {
+		await mutateAsync({ content: data.content, to: id, type: 'TEXT' } as ISendMessageRequest, {
 			onSuccess: (data, variables, context) => {
 				reset()
 				queryClient.invalidateQueries(['messages'])

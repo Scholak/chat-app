@@ -4,6 +4,6 @@ export interface IFriend {
   picture: string
 }
 
-export interface AddFriendSchema {
+export interface IAddFriendSchema {
   email: string
 }

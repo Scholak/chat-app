@@ -4,7 +4,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addFriendSchema } from '@/validations/addFriendSchema'
-import { AddFriendSchema } from '@/types/friend-types'
+import { IAddFriendSchema } from '@/types/friend-types'
 import { addFriendrequest } from '@/services/friendService'
 import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
@@ -12,11 +12,11 @@ import { useMutation } from 'react-query'
 const AddFriendForm = () => {
 	const { mutateAsync } = useMutation(addFriendrequest)
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<AddFriendSchema>({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<IAddFriendSchema>({
     resolver: zodResolver(addFriendSchema)
   })
 
-  const onSubmit = async (data: AddFriendSchema) => {
+  const onSubmit = async (data: IAddFriendSchema) => {
       await mutateAsync(data, {
 				onSuccess: (data, variables, context) => {
 					toast.success(data.message)

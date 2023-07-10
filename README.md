@@ -36,4 +36,4 @@ Will be completed later...
 - [ ] Multiple render when friend request and friend request accept (it renders 7 times)
 
 # Dev Todo
-add 'I' suffix before each type
+add dynamic base url path

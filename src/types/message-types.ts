@@ -7,11 +7,11 @@ export interface IMessage {
 	to: number
 }
 
-export interface SendMessageSchema {
+export interface ISendMessageSchema {
   content: string
 }
 
-export interface SendMessageRequest {
+export interface ISendMessageRequest {
 	type: 'TEXT' | 'FILE'
 	content: string
 	to: number
