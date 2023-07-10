@@ -6,6 +6,11 @@ export const getFriends = async () => {
 	return res.data
 }
 
+export const getFriendById = async (id: number) => {
+	const res = await axios.get(`http://localhost:3000/api/friends/${id}`)
+	return res.data
+}
+
 export const getFriendrequests = async () => {
 	const res = await axios.get('http://localhost:3000/api/friends/request')
 	return res.data

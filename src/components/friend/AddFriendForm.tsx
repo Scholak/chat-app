@@ -29,7 +29,7 @@ const AddFriendForm = () => {
   }
 
   return (
-		<div className='mx-3 p-3 bg-white rounded-md shadow'>
+		<div className='mx-3 text-white rounded-md shadow'>
 			<h3 className='mb-2 text-xl font-bold'>Add New Friend</h3>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className='flex items-stretch'>
@@ -37,16 +37,18 @@ const AddFriendForm = () => {
 						type='email'
 						{...register('email')}
 						placeholder='type email...'
-						className='px-1 border border-green-600 rounded-s outline-none'
+						className='flex-1 py-1 px-2 border rounded-s outline-none text-black'
 					/>
 					<button
 						type='submit'
-						className='w-full py-1 text-center bg-green-600 text-white rounded-e'
+						className='py-1 px-8 bg-blue-500 text-white text-center font-medium rounded-e'
 					>
 						add
 					</button>
 				</div>
-				{errors.email && <p className='mt-1 text-red-500'>{errors.email.message}</p>}
+				{errors.email && (
+					<p className='mt-1 text-red-500'>{errors.email.message}</p>
+				)}
 			</form>
 		</div>
 	)

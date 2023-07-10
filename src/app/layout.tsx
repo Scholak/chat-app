@@ -18,7 +18,7 @@ export default function RootLayout({
 			<body suppressHydrationWarning={true}>
 				<ClientProviders>
 					<main className='grid grid-cols-4'>
-						<div className='min-h-screen border-r border-slate-700 bg-slate-200'>
+						<div className='min-h-screen border-r border-gray-300 bg-slate-800'>
 							{children}
 						</div>
 						<div className='col-span-3'>

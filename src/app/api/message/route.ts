@@ -35,13 +35,13 @@ export async function POST(req: NextRequest) {
 
   try {
     const message = await db.message.create({
-      data: {
-        type: 'TEXT',
-        content: body.content,
-        from: authId,
-        to: body.to
-      }
-    })
+			data: {
+				type: 'TEXT',
+				content: body.content,
+				from: authId,
+				to: body.to,
+			},
+		})
 
     let room: string
     

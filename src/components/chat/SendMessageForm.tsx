@@ -8,6 +8,7 @@ import { sendMessageSchema } from '@/validations/sendMessageSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { FaArrowRight } from 'react-icons/fa'
 import { useMutation } from 'react-query'
 import { useSelector } from 'react-redux'
 
@@ -15,25 +16,34 @@ const SendMessageForm = () => {
 	const { mutateAsync } = useMutation(sendMessage)
 	const id = useSelector((state: RootState) => state.chat.id)
 
-	const { register, handleSubmit } = useForm<SendMessageSchema>({
+	const { register, handleSubmit, reset } = useForm<SendMessageSchema>({
 		resolver: zodResolver(sendMessageSchema)
 	})
 
 	const onSubmit = async (data: SendMessageSchema) => {
 		await mutateAsync({ content: data.content, to: id, type: 'TEXT' } as SendMessageRequest, {
 			onSuccess: (data, variables, context) => {
+				reset()
 				queryClient.invalidateQueries(['messages'])
 			},
 		})
 	}
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<input type="text" {...register('content')} placeholder='type...' />
-				<button type='submit'>send</button>
-			</form>
-		</div>
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className='w-full px-5 flex items-stretch gap-3 rounded-full bg-white'
+		>
+			<textarea
+			rows={1}
+				{...register('content')}
+				placeholder='type message...'
+				className='flex-1 py-3 px-6 rounded-s-full outline-none'
+			></textarea>
+			<button type='submit' className='rounded-e-full'>
+				<FaArrowRight className='text-xl font-bold text-neutral-900' />
+			</button>
+		</form>
 	)
 }
 

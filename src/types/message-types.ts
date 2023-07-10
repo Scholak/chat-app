@@ -1,8 +1,8 @@
-export interface Message {
+export interface IMessage {
 	id: number
 	type: 'TEXT' | 'FILE'
-	content: string
-	date: Date
+	content: Buffer
+	date: string
 	from: number
 	to: number
 }

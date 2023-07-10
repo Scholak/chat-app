@@ -36,7 +36,7 @@ model FriendRequest {
 model Message {
   id      Int      @id @default(autoincrement())
   type    Type
-  content String
+  content String   @db.LongText
   date    DateTime @default(now())
   from    Int
   to      Int

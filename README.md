@@ -28,11 +28,12 @@ Will be completed later...
 - [x] Add friend ui improvements
 - [x] Friend list ui improvements
 - [x] Friend requests ui improvements
-- [ ] Message screen ui improvements
-- [ ] Message send form ui improvements
+- [x] Message screen ui improvements
+- [x] Message send form ui improvements
 
 # Bug Fix
 - [ ] Sign in page display issue because of grid layout
 - [ ] Multiple render when friend request and friend request accept (it renders 7 times)
 
 # Dev Todo
+add 'I' suffix before each type

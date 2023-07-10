@@ -11,8 +11,8 @@ const Chat = () => {
 
 	if(id === 0) {
 		return (
-			<div className='h-screen bg-blue-200'>
-				<h3 className='text-4xl font-bold'>
+			<div className='h-screen flex bg-slate-900 text-white'>
+				<h3 className='m-auto text-4xl font-bold'>
 					Start new conversation or continue existing one
 				</h3>
 			</div>
@@ -20,7 +20,7 @@ const Chat = () => {
 	}
 
   return (
-		<div className='h-screen flex flex-col justify-between bg-blue-200'>
+		<div className='h-screen flex flex-col justify-between bg-slate-900'>
 			<MessageScreen />
 			<SendMessageForm />
 		</div>
