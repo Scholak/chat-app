@@ -20,7 +20,7 @@ const Chat = () => {
 	}
 
   return (
-		<div className='h-screen flex flex-col justify-between bg-slate-900'>
+		<div className='chat flex flex-col justify-between bg-slate-900'>
 			<MessageScreen />
 			<SendMessageForm />
 		</div>

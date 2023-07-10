@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  height: -webkit-fill-available;
+.chat {
+  height: 100dvh;
 }
 
 ::-webkit-scrollbar {
