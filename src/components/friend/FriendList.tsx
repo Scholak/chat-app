@@ -27,7 +27,7 @@ const FriendList = () => {
 					<div className='text-blue-500'>loading...</div>
 				) : (
 					friends?.map((friend: IFriend) => (
-						<Friend friend={friend} />
+						<Friend key={friend.id} friend={friend} />
 					))
 				)}
 			</div>

@@ -50,7 +50,7 @@ const MessageScreen = () => {
   }
 
   return (
-    <div className='scroll-to-bottom-auto p-4 overflow-y-auto'>
+    <div className='scroll-to-bottom-auto p-2 overflow-y-auto md:p-4'>
     {isLoading ? 
       <span className='text-blue-500'>messages fetching...</span> : messages.map((message: IMessage) => (
         <Message key={message.id} message={message} authId={session?.user.id as number} authImage={session?.user.image as string} friend={friend} />

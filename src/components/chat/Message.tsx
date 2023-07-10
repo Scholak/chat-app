@@ -17,13 +17,13 @@ const Message = ({ message, authId, authImage, friend }: Props) => {
 
 	return (
 		<div className={`mb-3 ${alignment}`}>
-			<div className={`w-4/5 inline-flex ${direction} items-start gap-3`}>
+			<div className={`w-4/5 inline-flex ${direction} items-start gap-1 md:gap-3`}>
 				<img
 					src={image}
-					className='shrink-0 w-8 h-8 translate-y-1 rounded-full overflow-hidden border border-white'
+					className='shrink-0 w-8 h-8 rounded-full overflow-hidden border border-white'
 				/>
 				<div>
-					<p className='py-3 px-6 rounded-lg bg-white shadow-sm shadow-white text-left text-neutral-900 leading-relaxing'>
+					<p className='py-1 px-2 rounded-lg bg-white shadow-sm shadow-white text-left text-neutral-900 leading-relaxing break-all md:py-3 md:px-6'>
 						{message.content}
 					</p>
 					<span className='text-sm text-gray-100'>
