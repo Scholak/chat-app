@@ -7,6 +7,8 @@ import FriendList from '@/components/friend/FriendList'
 import FriendRequest from '@/components/friend/FriendRequest'
 import React, { useRef } from 'react'
 
+export const revalidate = 0
+
 const ChatPage = () => {
 	const divEl = useRef<HTMLDivElement>(null)
 

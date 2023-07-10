@@ -1,4 +1,4 @@
-import { AddFriendSchema } from '@/types/friend-types'
+import { IAddFriendSchema } from '@/types/friend-types'
 import { z, ZodType } from 'zod'
 
 const errors = {
@@ -6,6 +6,6 @@ const errors = {
   email: 'email must be valid'
 }
 
-export const addFriendSchema: ZodType<AddFriendSchema> = z.object({
-  email: z.string().nonempty(errors.required).email(errors.email)
+export const addFriendSchema: ZodType<IAddFriendSchema> = z.object({
+	email: z.string().nonempty(errors.required).email(errors.email),
 })

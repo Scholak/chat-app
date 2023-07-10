@@ -4,7 +4,7 @@ declare module 'next-auth' {
 	interface Profile {
 		id: number
 		email: string,
-    image: string
+    picture: string
 	}
 	interface Session {
 		user: {
