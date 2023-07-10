@@ -30,6 +30,7 @@ Will be completed later...
 - [x] Friend requests ui improvements
 - [x] Message screen ui improvements
 - [x] Message send form ui improvements
+- [ ] Responsive design
 
 # Bug Fix
 - [x] Sign in page display issue because of grid layout
