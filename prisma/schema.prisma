@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -36,7 +36,7 @@ model FriendRequest {
 model Message {
   id      Int      @id @default(autoincrement())
   type    Type
-  content String   @db.LongText
+  content String   @db.Text
   date    DateTime @default(now())
   from    Int
   to      Int
