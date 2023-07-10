@@ -32,7 +32,7 @@ Will be completed later...
 - [x] Message send form ui improvements
 
 # Bug Fix
-- [ ] Sign in page display issue because of grid layout
+- [x] Sign in page display issue because of grid layout
 - [ ] Multiple render when friend request and friend request accept (it renders 7 times)
 
 # Dev Todo

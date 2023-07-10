@@ -10,7 +10,7 @@ const SignInLayout = async ({ children }: Props) => {
   const session = await getServerSession()
 
   if(session) {
-    redirect('/')
+    redirect('/chat')
   }
 
 	return <>{children}</>
