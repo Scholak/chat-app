@@ -6,7 +6,7 @@ import { getMessages } from '@/services/messageService'
 import { RootState } from '@/store/store'
 import { IMessage } from '@/types/message-types'
 import { useSession } from 'next-auth/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
 import Message from '@/components/chat/Message'
@@ -36,14 +36,18 @@ const MessageScreen = () => {
 	})
 
   const { data: messages, isLoading } = useQuery({
-    queryKey: ['messages'],
-    queryFn: getMessages
-  })
+		queryKey: ['messages', id],
+		queryFn: () => getMessages(id)
+	})
 
   const { data: friend, isLoading: isFriendLoading } = useQuery({
     queryKey: ['friend', id],
     queryFn: () => getFriendById(id)
   })
+
+  useEffect(() => {
+    queryClient.invalidateQueries(['messages', id])
+  }, [id])
 
   if (isFriendLoading) {
     return <p className='text-blue-500 font-semibold'>friend profile fetching...</p>

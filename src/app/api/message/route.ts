@@ -3,25 +3,6 @@ import { pusherServer } from "@/libs/pusherServer";
 import { getToken } from "next-auth/jwt";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const session = await getToken({req, secret: process.env.NEXTAUTH_SECRET})
-
-  if(!session) {
-    return new Response(JSON.stringify({ message: 'user not authenticated' }), { status: 401 })
-  }
-
-  const messages = await db.message.findMany({
-		where: {
-			OR: [
-				{ from: session.id as number },
-				{ to: session.id as number },
-			],
-		},
-	})
-
-  return new Response(JSON.stringify(messages), { status: 200 })
-}
-
 export async function POST(req: NextRequest) {
   const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
 

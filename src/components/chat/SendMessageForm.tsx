@@ -24,7 +24,7 @@ const SendMessageForm = () => {
 		await mutateAsync({ content: data.content, to: id, type: 'TEXT' } as ISendMessageRequest, {
 			onSuccess: (data, variables, context) => {
 				reset()
-				queryClient.invalidateQueries(['messages'])
+				queryClient.invalidateQueries(['messages', id])
 			},
 		})
 	}

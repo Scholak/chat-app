@@ -1,8 +1,8 @@
 import { ISendMessageRequest } from '@/types/message-types'
 import { api } from './api';
 
-export const getMessages = async () => {
-  const res = await api.get('/message')
+export const getMessages = async (id: number) => {
+  const res = await api.get(`/message/${id}`)
   return res.data
 }
 
