@@ -6,7 +6,7 @@ import { getMessages } from '@/services/messageService'
 import { RootState } from '@/store/store'
 import { IMessage } from '@/types/message-types'
 import { useSession } from 'next-auth/react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useQuery } from 'react-query'
 import { useSelector } from 'react-redux'
 import Message from '@/components/chat/Message'
@@ -16,6 +16,8 @@ const MessageScreen = () => {
   const { data: session } = useSession()
 
   const id = useSelector((state: RootState) => state.chat.id)
+
+  const bottomEl = useRef<HTMLDivElement>(null)
 
   if(!session?.user?.email) {
     <div>Loading...</div>
@@ -46,22 +48,38 @@ const MessageScreen = () => {
   })
 
   useEffect(() => {
-    queryClient.invalidateQueries(['messages', id])
-  }, [id])
+		queryClient.invalidateQueries(['messages', id])
+	}, [id])
+
+  useEffect(() => {
+    if (messages?.length > 0) {
+      setTimeout(() => {
+        bottomEl?.current?.scrollIntoView({ behavior: 'smooth' })
+      }, 200);
+    }
+  }, [isLoading])
 
   if (isFriendLoading) {
     return <p className='text-blue-500 font-semibold'>friend profile fetching...</p>
   }
 
   return (
-    <div className='scroll-to-bottom-auto pt-20 p-2 overflow-y-auto md:p-4'>
-    {isLoading ? 
-      <span className='text-blue-500'>messages fetching...</span> : messages.map((message: IMessage) => (
-        <Message key={message.id} message={message} authId={session?.user.id as number} authImage={session?.user.image as string} friend={friend} />
-      ))
-    }
-    </div>
-  )
+		<div className='pt-20 p-2 overflow-y-auto md:p-4'>
+			{isLoading ? (
+				<span className='text-blue-500'>messages fetching...</span>
+			) : messages.map((message: IMessage) => (
+						<Message
+							key={message.id}
+							message={message}
+							authId={session?.user.id as number}
+							authImage={session?.user.image as string}
+							friend={friend}
+						/>
+					))
+			}
+			<div ref={bottomEl}></div>
+		</div>
+	)
 }
 
 export default MessageScreen
