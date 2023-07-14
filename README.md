@@ -17,7 +17,7 @@ Will be completed later...
 
 **Message Operations**
 - [x] Send message to existing friend
-- [ ] Send file to existing friend
+- [x] Send file to existing friend
 
 **Group Operations**
 - [ ] Create new group

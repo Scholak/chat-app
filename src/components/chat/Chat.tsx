@@ -1,13 +1,17 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import MessageScreen from './MessageScreen'
 import SendMessageForm from './SendMessageForm'
 import { RootState } from '@/store/store'
 import { useSelector } from 'react-redux'
+import SendFile from './SendImage'
 
 const Chat = () => {
 	const id = useSelector((state: RootState) => state.chat.id)
+
+	const [file, setFile] = useState<File | null>()
+	const [preview, setPreview] = useState<string>('')
 
 	if(id === 0) {
 		return (
@@ -20,9 +24,17 @@ const Chat = () => {
 	}
 
   return (
-		<div className='chat flex flex-col justify-between bg-slate-900'>
+		<div className='chat relative w-full flex flex-col justify-between bg-slate-900'>
 			<MessageScreen />
-			<SendMessageForm />
+			<SendMessageForm setPreview={setPreview} setFile={setFile} />
+			{preview && (
+				<SendFile
+					file={file || null}
+					preview={preview}
+					setFile={setFile}
+					setPreview={setPreview}
+				/>
+			)}
 		</div>
 	)
 }

@@ -23,9 +23,13 @@ const Message = ({ message, authId, authImage, friend }: Props) => {
 					className='shrink-0 w-8 h-8 rounded-full overflow-hidden border border-white'
 				/>
 				<div>
-					<p className='py-1 px-2 rounded-lg bg-white shadow-sm shadow-white text-left text-neutral-900 leading-relaxing break-all md:py-3 md:px-6'>
-						{message.content}
-					</p>
+					{message.type === 'TEXT' ? (
+						<p className='py-1 px-2 rounded-lg bg-white shadow-sm shadow-white text-left text-neutral-900 leading-relaxing break-all md:py-3 md:px-6'>
+							{message.content}
+						</p>
+					) : (
+						<img src={message.content as any} alt="" />
+					)}
 					<span className='text-sm text-gray-100'>
 						{dayjs(message.date).format('MMM DD - HH:m')}
 					</span>
