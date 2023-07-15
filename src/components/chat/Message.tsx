@@ -2,6 +2,7 @@ import { IFriend } from '@/types/friend-types'
 import { IMessage } from '@/types/message-types'
 import dayjs from 'dayjs'
 import React from 'react'
+import DeleteButton from './DeleteButton'
 
 interface Props {
   message: IMessage
@@ -30,9 +31,12 @@ const Message = ({ message, authId, authImage, friend }: Props) => {
 					) : (
 						<img src={message.content as any} alt="" />
 					)}
-					<span className='text-sm text-gray-100'>
+					<div className='flex items-center gap-4 text-gray-100'>
+						<span className='text-sm '>
 						{dayjs(message.date).format('MMM DD - HH:m')}
 					</span>
+					{message.from === authId && <DeleteButton messageId={message.id} />}
+					</div>
 				</div>
 			</div>
 		</div>
