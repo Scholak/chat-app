@@ -1,39 +1,48 @@
-# Chat App Using Next.js & Pusher
+# Chat App Using Next.js, Pusher And Cloudinary
 
 # App Description
-Will be completed later...
+This app allows users to create an account via google auth. Registered users are able to add friends using email address. If other users accept friend request, you can communicate with them. There are two types of messages. **TEXT** and **FILE**. If you want to send message, you can select friend from friends section on sidebar and enter your text using input that located bottom right side of screen. After typing your message you can send it pressing the arrow button. If you want to upload image, you can press green plus icon located between chat input and send button. When you select image to upload, preview will be displayed. You can cancel sending via pressing **x** button on top right side or you can send it by pressing **send** button on bottom right side. After sending message, you can delete your messages by pressing **red trash bin** icon below the message.
+
+# Live Demo
+https://chat-app-ruby-three.vercel.app
 
 # App Features
-Will be completed later...
+- Google Authentication
+- Add Friends
+- Real time communication
 
-# Todo
-**Authentication**
-- [x] Google Auth
-- [x] Logout
+# Tech Stack
+- Framework: Next.js
+- Language: Typescript
+- Styling: Tailwindcss
+- Database: PostgreSQL
 
-**User Operations**
-- [x] Add new friend
-- [x] Decline friend request
+# Important Packages Used In The Project
+1. Prisma
+2. Axios
+3. Pusher
+4. Formidable
+5. Cloudinary
+6. React Query
+7. Redux Toolkit
+8. Zod
+9. React Hook Form
 
-**Message Operations**
-- [x] Send message to existing friend
-- [x] Send file to existing friend
+# App Images
+## Sign In Using Google Account
+![sign in](/images//sign-in.png)
 
-**Group Operations**
-- [ ] Create new group
-- [ ] Leave from joined group
-- [ ] Delete group if role is admin
+## Chat screen After Sign In
+![chat screen](/images//chat-screen.png)
 
-**UI Improvements**
-- [x] Add friend ui improvements
-- [x] Friend list ui improvements
-- [x] Friend requests ui improvements
-- [x] Message screen ui improvements
-- [x] Message send form ui improvements
-- [x] Responsive design
+## Friend Request
+![friend request](/images//friend-request.png)
 
-# Bug Fix
-- [x] Sign in page display issue because of grid layout
-- [ ] Multiple render when friend request and friend request accept (it renders 7 times)
+## Accept Friend Request
+![add friend](/images//add-friend.png)
 
-# Dev Todo
+## Send Image To Selected Friend
+![send image](/images//send-image.png)
+
+## Screen View After Sending Messages
+![message screen](/images//message-screen.png)
