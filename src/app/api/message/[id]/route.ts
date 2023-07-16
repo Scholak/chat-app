@@ -2,6 +2,7 @@ import db from "@/libs/db"
 import { pusherServer } from "@/libs/pusherServer"
 import { getToken } from "next-auth/jwt"
 import { NextRequest } from "next/server"
+import { storage } from '@/libs/storage'
 
 interface Params {
 	params: {
@@ -48,6 +49,14 @@ export async function DELETE(req: NextRequest, { params }: Params) {
 				id: Number(params.id)
 			}
 		})
+
+		if (deletedMessage.type === 'FILE') {
+			const parsedUrl = deletedMessage.content.split('/')
+			const filename = parsedUrl[parsedUrl.length - 1]
+			const publicId = filename.split('.')[0]
+			
+			await storage.uploader.destroy(publicId, function(result: any) {});
+		}
 
 		if (deletedMessage) {
 			if (authId < deletedMessage.to) {
