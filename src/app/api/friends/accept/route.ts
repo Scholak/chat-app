@@ -1,6 +1,5 @@
 import db from "@/libs/db"
 import { pusherServer } from "@/libs/pusherServer"
-import { getServerSession } from "next-auth"
 import { getToken } from "next-auth/jwt"
 import { NextRequest } from "next/server"
 
