@@ -22,11 +22,11 @@ export const addFriendRequest = async (data: IAddFriendSchema) => {
 }
 
 export const acceptFriendRequest = async (senderEmail: string) => {
-	const res = await api.post('/friends/accept', { senderEmail })
+	const res = await api.put('/friends/accept', { senderEmail })
 	return res.data
 }
 
 export const declineFriendRequest = async (senderEmail: string) => {
-	const res = await api.post('/friends/decline', { senderEmail })
+	const res = await api.put('/friends/decline', { senderEmail })
 	return res.data
 }

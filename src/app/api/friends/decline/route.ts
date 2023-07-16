@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth'
 import { getToken } from 'next-auth/jwt'
 import { NextRequest } from 'next/server'
 
-export async function POST(req: NextRequest) {
+export async function PUT(req: NextRequest) {
 	const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRETs })
 
 	if (!session) {
