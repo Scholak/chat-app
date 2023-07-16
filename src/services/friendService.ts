@@ -11,22 +11,22 @@ export const getFriendById = async (id: number) => {
 	return res.data
 }
 
-export const getFriendrequests = async () => {
+export const getFriendRequests = async () => {
 	const res = await api.get('/friends/request')
 	return res.data
 }
 
-export const addFriendrequest = async (data: IAddFriendSchema) => {
+export const addFriendRequest = async (data: IAddFriendSchema) => {
   const res = await api.post('/friends/request', data)
   return res.data
 }
 
-export const acceptFriendrequest = async (senderEmail: string) => {
+export const acceptFriendRequest = async (senderEmail: string) => {
 	const res = await api.post('/friends/accept', { senderEmail })
 	return res.data
 }
 
-export const declineFriendrequest = async (senderEmail: string) => {
+export const declineFriendRequest = async (senderEmail: string) => {
 	const res = await api.post('/friends/decline', { senderEmail })
 	return res.data
 }

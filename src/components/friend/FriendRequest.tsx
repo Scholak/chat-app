@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useSession } from 'next-auth/react'
-import { acceptFriendrequest, declineFriendrequest, getFriendrequests } from '@/services/friendService'
+import { acceptFriendRequest, declineFriendRequest, getFriendRequests } from '@/services/friendService'
 import { toast } from 'react-toastify'
 import { useMutation, useQuery } from 'react-query'
 import { queryClient } from '@/libs/queryClient'
@@ -23,10 +23,10 @@ const FriendRequest = () => {
 
 	const { data: requests } = useQuery({
 		queryKey: ['requests', session?.user?.email],
-		queryFn: getFriendrequests,
+		queryFn: getFriendRequests,
 	})
 
-	const { mutateAsync: acceptMutateAsync } = useMutation(acceptFriendrequest, {
+	const { mutateAsync: acceptMutateAsync } = useMutation(acceptFriendRequest, {
 		onSuccess: (data, variables, context) => {
 			queryClient.invalidateQueries(['requests', session?.user?.email])
 			queryClient.invalidateQueries(['friends', session?.user?.email])
@@ -36,7 +36,7 @@ const FriendRequest = () => {
 		},
 	})
 
-	const { mutateAsync: declineMutateAsync } = useMutation(declineFriendrequest, {
+	const { mutateAsync: declineMutateAsync } = useMutation(declineFriendRequest, {
 		onSuccess: (data, variables, context) => {
 			queryClient.invalidateQueries(['requests', session?.user?.email])
 			queryClient.invalidateQueries(['friends', session?.user?.email])
@@ -44,7 +44,8 @@ const FriendRequest = () => {
 		onError: (error: any, variables, context) => {
 			toast.error(error.response?.data.message)
 		},
-	})
+		}
+	)
 
 	if (session?.user) {
 		const channel = pusherClient.subscribe('user')

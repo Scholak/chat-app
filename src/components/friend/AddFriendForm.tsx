@@ -5,12 +5,12 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addFriendSchema } from '@/validations/addFriendSchema'
 import { IAddFriendSchema } from '@/types/friend-types'
-import { addFriendrequest } from '@/services/friendService'
+import { addFriendRequest } from '@/services/friendService'
 import { toast } from 'react-toastify'
 import { useMutation } from 'react-query'
 
 const AddFriendForm = () => {
-	const { mutateAsync } = useMutation(addFriendrequest)
+	const { mutateAsync } = useMutation(addFriendRequest)
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<IAddFriendSchema>({
     resolver: zodResolver(addFriendSchema)
