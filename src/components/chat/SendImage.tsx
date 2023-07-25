@@ -2,6 +2,7 @@
 
 import { RootState } from '@/store/store'
 import axios from 'axios'
+import Image from 'next/image'
 import React from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
@@ -34,16 +35,12 @@ const SendImage = ({ file, preview, setFile, setPreview }: Props) => {
 	return (
 		<div className='absolute inset-0 bg-black z-50'>
 			<button
-				className='absolute top-4 right-4 w-8 h-8 inline-flex text-red-600 bg-white rounded-full cursor-pointer'
+				className='absolute top-4 right-4 w-8 h-8 inline-flex text-red-600 bg-white rounded-full cursor-pointer to-zinc-500'
 				onClick={handleClose}
 			>
 				<FaTimes className='m-auto' />
 			</button>
-			<img
-				src={preview}
-				alt='preview'
-				className='mx-auto max-w-full max-h-full'
-			/>
+			<Image fill src={preview} alt='preview' />
 			<div
 				className='fixed bottom-6 right-6 rounded-md bg-slate-900 text-white text-center py-3 px-6 cursor-pointer border border-white'
 				onClick={handleSend}

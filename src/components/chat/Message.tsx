@@ -22,9 +22,12 @@ const Message = ({ message, authId, authImage, friend }: Props) => {
 			<div
 				className={`w-4/5 inline-flex ${direction} items-start gap-1 md:gap-3`}
 			>
-				<img
+				<Image
+					width={40}
+					height={40}
 					src={image}
-					className='shrink-0 w-8 h-8 rounded-full overflow-hidden border border-white'
+					alt='user profile'
+					className='shrink-0 rounded-full overflow-hidden border border-white'
 				/>
 				<div>
 					{message.type === 'TEXT' ? (
