@@ -66,27 +66,26 @@ const FriendRequest = () => {
 		<div className='my-4 mx-3 rounded-md text-white shadow'>
 			<h3 className='mb-2 text-xl font-bold'>Incoming Requests</h3>
 			<div className='grid gap-4'>
-				{requests ? (
-					requests.map((request: any) => (
-						<div key={request.id} className='flex items-center justify-between'>
-							<span>{request.sender}</span>
-							<div className='flex gap-6'>
-								<button
-									className='py-1 px-2 rounded cursor-pointer bg-blue-500 text-white'
-									onClick={() => handleAccept(request.sender)}
-								>
-									accept
-								</button>
-								<button
-									className='py-1 px-2 rounded cursor-pointer bg-red-500 text-white'
-									onClick={() => handleDecline(request.sender)}
-								>
-									decline
-								</button>
-							</div>
+				{requests && requests.map((request: any) => (
+					<div key={request.id} className='flex items-center justify-between'>
+						<span>{request.sender}</span>
+						<div className='flex gap-6'>
+							<button
+								className='py-1 px-2 rounded cursor-pointer bg-blue-500 text-white'
+								onClick={() => handleAccept(request.sender)}
+							>
+								accept
+							</button>
+							<button
+								className='py-1 px-2 rounded cursor-pointer bg-red-500 text-white'
+								onClick={() => handleDecline(request.sender)}
+							>
+								decline
+							</button>
 						</div>
-					))
-				) : (
+					</div>
+				))}
+				{requests?.length === 0 && (
 					<p className='font-medium text-blue-400'>
 						there is no friend request
 					</p>
