@@ -50,10 +50,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       await pusherServer.trigger('chat', room, {
 				message,
 			})
-    }
-  })
 
-  return res.end()
+      return res.end()
+    }
+    return res.end()
+  })
 }
 
 export default handler
