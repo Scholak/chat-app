@@ -52,12 +52,12 @@ const MessageScreen = () => {
 	}, [id])
 
   useEffect(() => {
-    if (messages?.length > 0) {
-      setTimeout(() => {
-        bottomEl?.current?.scrollIntoView({ behavior: 'smooth' })
-      }, 200);
-    }
-  }, [isLoading])
+		if (messages?.length > 0) {
+			setTimeout(() => {
+				bottomEl?.current?.scrollIntoView({ behavior: 'smooth' })
+			}, 200)
+		}
+	}, [isLoading, messages?.length])
 
   if (isFriendLoading) {
     return <p className='text-blue-500 font-semibold'>friend profile fetching...</p>
