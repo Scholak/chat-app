@@ -3,6 +3,7 @@ import { IMessage } from '@/types/message-types'
 import dayjs from 'dayjs'
 import React from 'react'
 import DeleteButton from './DeleteButton'
+import Image from 'next/image'
 
 interface Props {
   message: IMessage
@@ -18,7 +19,9 @@ const Message = ({ message, authId, authImage, friend }: Props) => {
 
 	return (
 		<div className={`mb-3 ${alignment}`}>
-			<div className={`w-4/5 inline-flex ${direction} items-start gap-1 md:gap-3`}>
+			<div
+				className={`w-4/5 inline-flex ${direction} items-start gap-1 md:gap-3`}
+			>
 				<img
 					src={image}
 					className='shrink-0 w-8 h-8 rounded-full overflow-hidden border border-white'
@@ -29,13 +32,18 @@ const Message = ({ message, authId, authImage, friend }: Props) => {
 							{message.content}
 						</p>
 					) : (
-						<img src={message.content as any} alt="" />
+						<Image
+							width={1000}
+							height={1000}
+							src={message.content as any}
+							alt='message image'
+						/>
 					)}
 					<div className='flex items-center gap-4 text-gray-100'>
 						<span className='text-sm '>
-						{dayjs(message.date).format('MMM DD - HH:m')}
-					</span>
-					{message.from === authId && <DeleteButton messageId={message.id} />}
+							{dayjs(message.date).format('MMM DD - HH:m')}
+						</span>
+						{message.from === authId && <DeleteButton messageId={message.id} />}
 					</div>
 				</div>
 			</div>

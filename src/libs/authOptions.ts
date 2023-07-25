@@ -24,8 +24,10 @@ export const authOptions: NextAuthOptions = {
 						},
 					})
 					token.id = createdUser.id
+					token.image = createdUser.picture
 				} else {
 					token.id = existingUser.id
+					token.image = existingUser.picture
 				}
 			}
 
@@ -33,6 +35,7 @@ export const authOptions: NextAuthOptions = {
 		},
 		async session({session, token}) {
 			session.user.id = token.id as number
+			session.user.image = token.image as string
 			return session
 		},
 		async signIn({ account }) {

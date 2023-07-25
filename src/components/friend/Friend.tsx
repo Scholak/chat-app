@@ -3,6 +3,7 @@
 import { changeChat } from '@/store/slices/chatSlice'
 import { RootState } from '@/store/store'
 import { IFriend } from '@/types/friend-types'
+import Image from 'next/image'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -20,19 +21,24 @@ const Friend = ({ friend }: Props) => {
 	}
   
   return (
-    <div
-      className={`flex items-center gap-3 mb-3 p-3 bg-white text-blue-500 rounded-md cursor-pointer ${id === friend.id ? 'shadow-lg' : ''}`}
-      onClick={() => handleChangeChat(friend.id)}
-    >
-      <img
-        src={friend.picture}
-        className='w-10 h-10 rounded-full overflow-hidden'
-      />
-      <span className={id === friend.id ? 'font-bold' : ''}>
-        {friend.email}
-      </span>
-    </div>
-  )
+		<div
+			className={`flex items-center gap-3 mb-3 p-3 bg-white text-blue-500 rounded-md cursor-pointer ${
+				id === friend.id ? 'shadow-lg' : ''
+			}`}
+			onClick={() => handleChangeChat(friend.id)}
+		>
+			<Image
+				width={40}
+				height={40}
+				src={friend.picture}
+				alt='friend picture'
+				className='rounded-full overflow-hidden'
+			/>
+			<span className={id === friend.id ? 'font-bold' : ''}>
+				{friend.email}
+			</span>
+		</div>
+	)
 }
 
 export default Friend
