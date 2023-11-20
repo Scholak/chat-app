@@ -19,10 +19,9 @@ const Message = ({ message, authId, authImage, friend }: Props) => {
 
 	return (
 		<div className={`mb-3 ${alignment}`}>
-			<div
-				className={`w-4/5 inline-flex ${direction} items-start gap-1 md:gap-3`}
-			>
+			<div className={`w-4/5 inline-flex ${direction} items-start gap-1 md:gap-3`}>
 				<Image
+					unoptimized
 					width={40}
 					height={40}
 					src={image}
@@ -35,17 +34,10 @@ const Message = ({ message, authId, authImage, friend }: Props) => {
 							{message.content}
 						</p>
 					) : (
-						<Image
-							width={1000}
-							height={1000}
-							src={message.content as any}
-							alt='message image'
-						/>
+						<Image unoptimized width={1000} height={1000} src={message.content as any} alt='message image' />
 					)}
 					<div className='flex items-center gap-4 text-gray-100'>
-						<span className='text-sm '>
-							{dayjs(message.date).format('MMM DD - HH:m')}
-						</span>
+						<span className='text-sm '>{dayjs(message.date).format('MMM DD - HH:m')}</span>
 						{message.from === authId && <DeleteButton messageId={message.id} />}
 					</div>
 				</div>

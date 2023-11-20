@@ -40,7 +40,7 @@ const SendImage = ({ file, preview, setFile, setPreview }: Props) => {
 			>
 				<FaTimes className='m-auto' />
 			</button>
-			<Image fill src={preview} alt='preview' />
+			<Image unoptimized fill src={preview} alt='preview' />
 			<div
 				className='fixed bottom-6 right-6 rounded-md bg-slate-900 text-white text-center py-3 px-6 cursor-pointer border border-white'
 				onClick={handleSend}

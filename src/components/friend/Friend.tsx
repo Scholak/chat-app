@@ -28,15 +28,14 @@ const Friend = ({ friend }: Props) => {
 			onClick={() => handleChangeChat(friend.id)}
 		>
 			<Image
+				unoptimized
 				width={40}
 				height={40}
 				src={friend.picture}
 				alt='friend picture'
 				className='rounded-full overflow-hidden'
 			/>
-			<span className={id === friend.id ? 'font-bold' : ''}>
-				{friend.email}
-			</span>
+			<span className={id === friend.id ? 'font-bold' : ''}>{friend.email}</span>
 		</div>
 	)
 }

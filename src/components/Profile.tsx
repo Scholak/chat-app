@@ -12,6 +12,7 @@ const Profile = () => {
 		<div className='m-3 p-3 flex gap-4 items-center rounded-md shadow bg-white'>
 			{session?.user.image && (
 				<Image
+					unoptimized
 					width={40}
 					height={40}
 					src={session.user.image}
@@ -21,10 +22,7 @@ const Profile = () => {
 			)}
 			<div className='flex flex-col justify-between'>
 				<strong>{session?.user.email}</strong>
-				<button
-					onClick={() => signOut()}
-					className='flex gap-2 items-center text-lg text-red-600 cursor-pointer'
-				>
+				<button onClick={() => signOut()} className='flex gap-2 items-center text-lg text-red-600 cursor-pointer'>
 					<span>logout</span>
 					<FaSignOutAlt />
 				</button>
